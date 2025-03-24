@@ -1,11 +1,12 @@
 "use client";
 
-import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
-import { BookMarkedIcon, BookOpen } from "lucide-react";
+import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs"; // Removed SignInButton import
+import { BookMarkedIcon } from "lucide-react"; // Removed BookOpen import
 import Link from "next/link";
 import { SearchInput } from "./SearchInput";
 import { Button } from "./ui/button";
 import DarkModeToggle from "./DarkModeToggle";
+import Image from "next/image";
 
 export default function Header() {
   return (
@@ -18,10 +19,15 @@ export default function Header() {
               prefetch={false}
               className="flex items-center space-x-2 hover:opacity-90 transition-opacity"
             >
-              <BookOpen className="h-6 w-6 text-primary" />
+              <Image 
+                src="/logo1.svg"
+                alt="Logo" 
+                width={40}  
+                height={30}  
+                priority 
+              />
               <span className="text-xl font-bold bg-gradient-to-r from-primary/90 to-primary bg-clip-text text-transparent">
-                Courselly
-              </span>
+                Maduyu Academy</span>
             </Link>
 
             <SearchInput />
@@ -46,12 +52,11 @@ export default function Header() {
             </SignedIn>
 
             <SignedOut>
-              <SignInButton mode="modal">
-                <Button variant="outline" size="default">
-                  Sign In
-                </Button>
-              </SignInButton>
+              <Link href="/sign-in">
+                <Button variant="outline" size="default">Sign In</Button>
+              </Link>
             </SignedOut>
+
           </div>
         </div>
       </div>
